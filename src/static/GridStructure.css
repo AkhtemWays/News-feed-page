@@ -1,0 +1,9 @@
+.box-grid {
+  grid-column: 1/5;
+  display: flex;
+  border: 1px solid black;
+  margin-top: 1em;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 350px;
+}

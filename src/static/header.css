@@ -1,0 +1,18 @@
+.headers {
+  border: 1px solid black;
+}
+
+#nums {
+  text-align: end;
+}
+
+#quantity {
+  text-align: center;
+}
+
+#sort {
+  text-align: center;
+}
+
+button {
+}
