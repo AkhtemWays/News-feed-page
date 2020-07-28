@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../static/header.css";
 import { connect } from "react-redux";
 import { showGrid, showList } from "../store/actions";
+import { ReduxFormComponent } from "./PageSize";
 
 class Header extends Component {
   render() {
@@ -58,6 +59,7 @@ class Header extends Component {
         </div>
         <div className="headers" id="quantity">
           <strong>Кол-во:</strong>
+          <ReduxFormComponent />
         </div>
         <div className="headers" id="nums">
           Цифры:
@@ -77,5 +79,4 @@ const mapDispatchToProps = {
   showList,
   showGrid,
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

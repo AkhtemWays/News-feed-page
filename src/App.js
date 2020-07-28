@@ -5,11 +5,12 @@ import problemSolver from "./store/fetchReducer";
 import "./static/main.css";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import thunk from "thunk";
+import { reducer as formReducer } from "redux-form";
 
 const store = createStore(
   combineReducers({
     data: problemSolver,
+    form: formReducer,
   }),
   compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
