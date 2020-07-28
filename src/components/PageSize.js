@@ -6,6 +6,7 @@ import { setPagination } from "../store/actions";
 
 class PageSize extends Component {
   render() {
+    const pageSizeOptions = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     return (
       <Field
         component="select"
@@ -13,7 +14,7 @@ class PageSize extends Component {
         defaultValue={4}
         onChange={setPagination}
       >
-        {this.props.pageSizeOptions.map((val) =>
+        {pageSizeOptions.map((val) =>
           val == this.props.pageSize ? (
             <option name={val} value={val} selected>
               {val}
@@ -35,7 +36,6 @@ const mapStateToProps = (state) => {
   const selectedPageSize = selector(state, "pageSize");
   return {
     pageSize: selectedPageSize,
-    pageSizeOptions: state.data.pageSizeOptions,
   };
 };
 const mapDispatchToProps = {

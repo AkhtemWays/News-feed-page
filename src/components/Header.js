@@ -3,6 +3,7 @@ import "../static/header.css";
 import { connect } from "react-redux";
 import { showGrid, showList } from "../store/actions";
 import { ReduxFormComponent } from "./PageSize";
+import { formValueSelector } from "redux-form";
 
 class Header extends Component {
   render() {

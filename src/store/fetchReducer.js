@@ -4,7 +4,6 @@ import { data } from "../data";
 const initialData = {
   fetchedData: data,
   listSelected: true,
-  pageSize: 4,
   pageSizeOptions: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 };
 
