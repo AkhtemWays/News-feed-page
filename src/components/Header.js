@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "../static/header.css";
 import { connect } from "react-redux";
 import { showGrid, showList } from "../store/actions";
-import { ReduxFormComponent } from "./PageSize";
-import { formValueSelector } from "redux-form";
+import ReduxFormComponent from "./PageSize";
+import PageDisplayer from "./PageDisplayer";
 
 class Header extends Component {
   render() {
@@ -63,7 +63,7 @@ class Header extends Component {
           <ReduxFormComponent />
         </div>
         <div className="headers" id="nums">
-          Цифры:
+          <PageDisplayer />
         </div>
       </React.Fragment>
     );

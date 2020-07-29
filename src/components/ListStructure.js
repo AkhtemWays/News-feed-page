@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class ListStructure extends Component {
   render() {
-    return this.props.fetchedData.map((post, index) => (
+    return this.props.paginatedData.map((post, index) => (
       <div className="box-list" key={index}>
         <div className="img-field">
           <img src={post.urlImg} alt="nothing for you" />
@@ -26,7 +26,7 @@ class ListStructure extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    fetchedData: state.data.fetchedData,
+    paginatedData: state.data.paginatedData,
   };
 };
 

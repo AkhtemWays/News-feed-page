@@ -17,8 +17,10 @@ export function showList() {
   };
 }
 
-export function setPagination() {
+export function setPagination(values) {
+  console.log(values);
   return {
     type: SET_PAGINATION,
+    payload: values,
   };
 }
