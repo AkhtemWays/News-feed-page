@@ -4,6 +4,10 @@ export default (state, pageSize) => {
   const fullAmtPages = Math.floor(state.fetchedData.length / pageSize);
   const amtPages =
     state.fetchedData.length % pageSize === 0 ? fullAmtPages : fullAmtPages + 1;
+  const availablePages = [];
+  for (let i = 1; i <= amtPages; i++) {
+    availablePages.push(i);
+  }
   const paginatedData = state.fetchedData[indexOfLastItem]
     ? state.fetchedData.slice(indexOfFirstItem, indexOfLastItem)
     : state.fetchedData.slice(indexOfFirstItem, state.fetchedData.length);
@@ -30,7 +34,6 @@ export default (state, pageSize) => {
     toInsert.push(paginatedData[totalItemsOfFullBatches + i]);
   }
   normData.push(toInsert);
-  console.log(normData);
 
   // update everything calculated so far
   return {
@@ -40,5 +43,6 @@ export default (state, pageSize) => {
     amtPages: amtPages,
     normalizedData: normData,
     paginatedData: paginatedData,
+    availablePages: availablePages,
   };
 };

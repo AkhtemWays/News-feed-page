@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { reduxForm, Field, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 import { getFormValues } from "redux-form";
-import { setPagination } from "../store/actions";
 
 class PageSize extends Component {
   render() {
@@ -31,7 +30,7 @@ const mapStateToProps = (state) => {
   const selector = formValueSelector("pageSize");
   const selectedpageSize = selector(state, "pageSize");
   return {
-    pageSize: selectedpageSize,
+    pageSize: selectedpageSize ? selectedpageSize : state.data.pageSize,
     pageAmtOptions: state.data.pageAmtOptions,
   };
 };

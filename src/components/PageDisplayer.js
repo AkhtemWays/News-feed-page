@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setPage } from "../store/actions";
 
 class PageDisplayer extends Component {
   render() {
@@ -8,6 +9,19 @@ class PageDisplayer extends Component {
         <p>
           {this.props.currentPage} из {this.props.amtPages}
         </p>
+        <div>
+          {this.props.availablePages.map((page) => (
+            <button
+              onClick={() => this.props.setPage(page)}
+              value={page}
+              className={`btn btn-${
+                this.props.currentPage === page ? "primary" : "secondary"
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
       </>
     );
   }
@@ -16,6 +30,13 @@ class PageDisplayer extends Component {
 const mapStateToProps = (state) => ({
   currentPage: state.data.currentPage,
   amtPages: state.data.amtPages,
+  availablePages: state.data.availablePages,
 });
 
-export default connect(mapStateToProps, null)(PageDisplayer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPage: (values) => dispatch(setPage(values)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageDisplayer);

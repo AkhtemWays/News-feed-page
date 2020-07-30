@@ -1,10 +1,4 @@
-import { FETCH, SHOW_GRID, SHOW_LIST, SET_PAGINATION } from "./types";
-
-export function fetch() {
-  return {
-    type: FETCH,
-  };
-}
+import { SHOW_GRID, SHOW_LIST, SET_PAGE } from "./types";
 
 export function showGrid() {
   return {
@@ -14,5 +8,12 @@ export function showGrid() {
 export function showList() {
   return {
     type: SHOW_LIST,
+  };
+}
+
+export function setPage(page) {
+  return {
+    type: SET_PAGE,
+    payload: page,
   };
 }
