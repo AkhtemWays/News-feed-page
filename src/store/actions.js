@@ -16,11 +16,3 @@ export function showList() {
     type: SHOW_LIST,
   };
 }
-
-export function setPagination(values) {
-  console.log(values);
-  return {
-    type: SET_PAGINATION,
-    payload: values,
-  };
-}

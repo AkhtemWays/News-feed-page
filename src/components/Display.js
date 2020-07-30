@@ -22,7 +22,6 @@ class Display extends Component {
 const mapStateToProps = (state) => {
   return {
     listSelected: state.data.listSelected,
-    paginatedData: state.data.paginatedData,
     normalizedData: state.data.normalizedData,
   };
 };
