@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { showGrid, showList } from "../store/actions";
 import ReduxFormComponent from "./PageSize";
 import PageDisplayer from "./PageDisplayer";
+import SortOptions from "./sortOptions";
 
 class Header extends Component {
   render() {
@@ -57,6 +58,7 @@ class Header extends Component {
         </div>
         <div className="headers" id="sort">
           <strong>Сортировать:</strong>
+          <SortOptions />
         </div>
         <div className="headers" id="quantity">
           <strong>Кол-во:</strong>

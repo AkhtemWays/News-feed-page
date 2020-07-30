@@ -5,24 +5,19 @@ import { setPage } from "../store/actions";
 class PageDisplayer extends Component {
   render() {
     return (
-      <>
-        <p>
-          {this.props.currentPage} из {this.props.amtPages}
-        </p>
-        <div>
-          {this.props.availablePages.map((page) => (
-            <button
-              onClick={() => this.props.setPage(page)}
-              value={page}
-              className={`btn btn-${
-                this.props.currentPage === page ? "primary" : "secondary"
-              }`}
-            >
-              {page}
-            </button>
-          ))}
-        </div>
-      </>
+      <div>
+        {this.props.availablePages.map((page) => (
+          <button
+            onClick={() => this.props.setPage(page)}
+            value={page}
+            className={`btn btn-${
+              this.props.currentPage === page ? "primary" : "secondary"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
     );
   }
 }

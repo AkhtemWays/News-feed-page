@@ -9,8 +9,12 @@ class Display extends Component {
       <React.Fragment>
         {this.props.listSelected ? (
           <ListStructure />
-        ) : (
+        ) : this.props.isDefaultSort ? (
           this.props.normalizedData.map((postBatch, index) => (
+            <GridStructure postBatch={postBatch} key={index} />
+          ))
+        ) : (
+          this.props.sortedByDateNormalizedData.map((postBatch, index) => (
             <GridStructure postBatch={postBatch} key={index} />
           ))
         )}
@@ -23,6 +27,8 @@ const mapStateToProps = (state) => {
   return {
     listSelected: state.data.listSelected,
     normalizedData: state.data.normalizedData,
+    sortedByDateNormalizedData: state.data.sortedByDateNormalizedData,
+    isDefaultSort: state.data.isDefaultSort,
   };
 };
 

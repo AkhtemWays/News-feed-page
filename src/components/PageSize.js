@@ -8,7 +8,7 @@ class PageSize extends Component {
     return (
       <Field component="select" name="pageSize">
         {this.props.pageAmtOptions.map((val) =>
-          val == this.props.pageSize ? (
+          val === this.props.pageSize ? (
             <option name={`pagesize${val}`} value={val} selected>
               {val}
             </option>
