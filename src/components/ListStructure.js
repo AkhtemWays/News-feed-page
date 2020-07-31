@@ -4,11 +4,19 @@ import { connect } from "react-redux";
 
 class ListStructure extends Component {
   render() {
+    console.log(this.props.currentPage);
     return this.props.isDefaultSort
       ? this.props.paginatedData.map((post, index) => (
           <div className="box-list" key={index}>
             <div className="img-field">
-              <img src={post.urlImg} alt="nothing for you" />
+              <img
+                src={
+                  this.props.images[
+                    (this.props.currentPage - 1) * this.props.pageSize + index
+                  ]
+                }
+                alt="nothing for you"
+              />
             </div>
             <div className="text-field">
               <div className="link-field">
@@ -18,9 +26,6 @@ class ListStructure extends Component {
               </div>
               <div className="plain-field">
                 <p>{post.body}</p>
-              </div>
-              <div>
-                <p>{post.date.toString()}</p>
               </div>
             </div>
           </div>
@@ -28,7 +33,14 @@ class ListStructure extends Component {
       : this.props.sortedByDatePaginatedData.map((post, index) => (
           <div className="box-list" key={index}>
             <div className="img-field">
-              <img src={post.urlImg} alt="nothing for you" />
+              <img
+                src={
+                  this.props.images[
+                    (this.props.currentPage - 1) * this.props.pageSize + index
+                  ]
+                }
+                alt="nothing for you"
+              />
             </div>
             <div className="text-field">
               <div className="link-field">
@@ -38,9 +50,6 @@ class ListStructure extends Component {
               </div>
               <div className="plain-field">
                 <p>{post.body}</p>
-              </div>
-              <div>
-                <p>{post.date.toString()}</p>
               </div>
             </div>
           </div>
@@ -53,6 +62,9 @@ const mapStateToProps = (state) => {
     paginatedData: state.data.paginatedData,
     sortedByDatePaginatedData: state.data.sortedByDatePaginatedData,
     isDefaultSort: state.data.isDefaultSort,
+    images: state.data.images,
+    currentPage: state.data.currentPage,
+    pageSize: state.data.pageSize,
   };
 };
 

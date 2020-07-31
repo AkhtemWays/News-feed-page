@@ -6,6 +6,7 @@ import {
   CANCEL_START,
 } from "./types";
 import PaginateAndNormalizeData from "../utils/PaginateAndNormalizeData";
+import { imageUrls } from "../static/images";
 
 const initialData = {
   fetchedData: [],
@@ -24,6 +25,7 @@ const initialData = {
   sortedByDateNormalizedData: [],
   isDefaultSort: true,
   isStart: true,
+  images: imageUrls,
 };
 
 export default function (state = initialData, action) {
