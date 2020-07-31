@@ -57,11 +57,12 @@ export default function (state = initialData, action) {
     case FETCH_POSTS:
       const payload = action.payload;
       const cleanFetchedData = [];
-      for (let item of payload) {
+      for (let [index, item] of payload.entries()) {
         cleanFetchedData.push({
           title: item.Title,
           body: item["Description"],
           date: new Date(item.date),
+          imgUrl: state.images[index],
         });
       }
       const cleanFetchedDataSorted = [...cleanFetchedData].sort(

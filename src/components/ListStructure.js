@@ -9,14 +9,7 @@ class ListStructure extends Component {
       ? this.props.paginatedData.map((post, index) => (
           <div className="box-list" key={index}>
             <div className="img-field">
-              <img
-                src={
-                  this.props.images[
-                    (this.props.currentPage - 1) * this.props.pageSize + index
-                  ]
-                }
-                alt="nothing for you"
-              />
+              <img src={post.imgUrl} alt="nothing for you" />
             </div>
             <div className="text-field">
               <div className="link-field">
@@ -33,14 +26,7 @@ class ListStructure extends Component {
       : this.props.sortedByDatePaginatedData.map((post, index) => (
           <div className="box-list" key={index}>
             <div className="img-field">
-              <img
-                src={
-                  this.props.images[
-                    (this.props.currentPage - 1) * this.props.pageSize + index
-                  ]
-                }
-                alt="nothing for you"
-              />
+              <img src={post.imgUrl} alt="nothing for you" />
             </div>
             <div className="text-field">
               <div className="link-field">
