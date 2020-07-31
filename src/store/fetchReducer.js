@@ -1,10 +1,15 @@
-import { SHOW_GRID, SHOW_LIST, SET_PAGINATION, SET_PAGE } from "./types";
-import { data, sortedData } from "../data";
+import {
+  SHOW_GRID,
+  SHOW_LIST,
+  SET_PAGE,
+  FETCH_POSTS,
+  CANCEL_START,
+} from "./types";
 import PaginateAndNormalizeData from "../utils/PaginateAndNormalizeData";
 
 const initialData = {
-  fetchedData: data,
-  sortedByDateFetchedData: sortedData.sort((a, b) => a.date - b.date),
+  fetchedData: [],
+  sortedByDateFetchedData: [],
   listSelected: true,
   currentPage: 1,
   paginatedData: [],
@@ -18,21 +23,17 @@ const initialData = {
   sortedByDatePaginatedData: [],
   sortedByDateNormalizedData: [],
   isDefaultSort: true,
+  isStart: true,
 };
 
 export default function (state = initialData, action) {
   switch (action.type) {
-    case "@@INIT":
-      const initialData = PaginateAndNormalizeData(state, state.currentPage);
+    case CANCEL_START:
       return {
         ...state,
-        amtPages: initialData.amtPages,
-        paginatedData: initialData.paginatedData,
-        normalizedData: initialData.normalizedData,
-        availablePages: initialData.availablePages,
-        sortedByDatePaginatedData: initialData.sortedByDatePaginatedData,
-        sortedByDateNormalizedData: initialData.sortedByDateNormalizedData,
+        isStart: false,
       };
+
     case SET_PAGE:
       const curPage = action.payload;
       const dataAfterPageChanging = PaginateAndNormalizeData(
@@ -51,6 +52,38 @@ export default function (state = initialData, action) {
         sortedByDateNormalizedData:
           dataAfterPageChanging.sortedByDateNormalizedData,
       };
+    case FETCH_POSTS:
+      const payload = action.payload;
+      const cleanFetchedData = [];
+      for (let item of payload) {
+        cleanFetchedData.push({
+          title: item.Title,
+          body: item["Description"],
+          date: new Date(item.date),
+        });
+      }
+      const cleanFetchedDataSorted = [...cleanFetchedData].sort(
+        (a, b) => a.date - b.date
+      );
+
+      const initialData = PaginateAndNormalizeData(
+        state,
+        state.pageSize,
+        state.currentPage,
+        cleanFetchedData,
+        cleanFetchedDataSorted
+      );
+      return {
+        ...state,
+        fetchedData: initialData.fetchedData,
+        sortedByDateFetchedData: cleanFetchedDataSorted,
+        paginatedData: initialData.paginatedData,
+        normalizedData: initialData.normalizedData,
+        amtPages: initialData.amtPages,
+        availablePages: initialData.availablePages,
+        sortedByDatePaginatedData: initialData.sortedByDatePaginatedData,
+        sortedByDateNormalizedData: initialData.sortedByDateNormalizedData,
+      };
 
     case SHOW_GRID:
       return {
@@ -66,7 +99,6 @@ export default function (state = initialData, action) {
       if (action.meta.field === "pageSize") {
         const pageSize = action.payload;
         const data = PaginateAndNormalizeData(state, pageSize);
-
         return {
           ...state,
           pageSize: pageSize,
@@ -80,7 +112,6 @@ export default function (state = initialData, action) {
         };
       } else if (action.meta.field === "sortOption") {
         if (action.payload === "date") {
-          const data = PaginateAndNormalizeData(state);
           return {
             ...state,
             isDefaultSort: false,

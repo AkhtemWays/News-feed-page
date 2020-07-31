@@ -1,25 +1,27 @@
-export default (state, pageSize, curPage) => {
+export default (state, pageSize, curPage, fetchedData, sortedFetchedData) => {
   const currentPage = curPage ? curPage : state.currentPage;
   const indexOfLastItem = currentPage * pageSize; // settings for pagination
   const indexOfFirstItem = indexOfLastItem - pageSize;
-  const fullAmtPages = Math.floor(state.fetchedData.length / pageSize);
+  const fetchData = fetchedData ? fetchedData : state.fetchedData;
+  const fullAmtPages = Math.floor(fetchData.length / pageSize);
   const amtPages =
-    state.fetchedData.length % pageSize === 0 ? fullAmtPages : fullAmtPages + 1;
+    fetchData.length % pageSize === 0 ? fullAmtPages : fullAmtPages + 1;
   const availablePages = [];
   for (let i = 1; i <= amtPages; i++) {
     availablePages.push(i);
   }
-  const sortedByDatePaginatedData = state.sortedByDateFetchedData[
-    indexOfLastItem
-  ]
-    ? state.sortedByDateFetchedData.slice(indexOfFirstItem, indexOfLastItem)
-    : state.sortedByDateFetchedData.slice(
+  const sortedByDateFetchedData = state.sortedByDateFetchedData
+    ? state.sortedByDateFetchedData
+    : sortedFetchedData;
+  const sortedByDatePaginatedData = sortedByDateFetchedData[indexOfLastItem]
+    ? sortedByDateFetchedData.slice(indexOfFirstItem, indexOfLastItem)
+    : sortedByDateFetchedData.slice(
         indexOfFirstItem,
-        state.sortedByDateFetchedData.length
+        sortedByDateFetchedData.length
       );
-  const paginatedData = state.fetchedData[indexOfLastItem]
-    ? state.fetchedData.slice(indexOfFirstItem, indexOfLastItem)
-    : state.fetchedData.slice(indexOfFirstItem, state.fetchedData.length);
+  const paginatedData = fetchData[indexOfLastItem]
+    ? fetchData.slice(indexOfFirstItem, indexOfLastItem)
+    : fetchData.slice(indexOfFirstItem, fetchData.length);
   // data normalization for pagination
   let splitter = 0; // needs for splitting specially for grid structure
   let toInsertPaginatedDefault = []; // needs to insert by batch
@@ -65,5 +67,7 @@ export default (state, pageSize, curPage) => {
     availablePages: availablePages,
     sortedByDatePaginatedData: sortedByDatePaginatedData,
     sortedByDateNormalizedData: normDataByDate,
+    sortedByDateFetchedData: sortedByDateFetchedData,
+    fetchedData: fetchData,
   };
 };
