@@ -14,12 +14,10 @@ img {
 }
 
 .img-field {
-  border: 1px solid black;
   flex: 1;
 }
 
 .text-field {
-  border: 1px solid black;
   flex: 4;
   padding: 1em;
 }

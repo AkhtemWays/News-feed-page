@@ -4,6 +4,5 @@
   grid-template-columns: repeat(4, 1fr);
   margin-top: 2em;
   grid-gap: 1em;
-  border: 1px solid black;
   background-color: lightcyan;
 }
