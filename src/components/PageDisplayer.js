@@ -3,6 +3,16 @@ import { connect } from "react-redux";
 import { setPage } from "../store/actions";
 
 class PageDisplayer extends Component {
+  componentWillUpdate(nextProps, nextState) {
+    if (
+      nextProps.currentPage === this.props.currentPage &&
+      this.props.amtPages === nextProps.amtPages &&
+      this.props.availablePages === nextProps.availablePages
+    ) {
+      console.log("update prevented");
+      return;
+    }
+  }
   render() {
     return (
       <div>

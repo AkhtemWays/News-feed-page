@@ -6,7 +6,7 @@ import { fetchPosts, cancelStart } from "../store/actions";
 import { connect } from "react-redux";
 
 class Content extends Component {
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.isStart) {
       this.props.fetchPosts();
       this.props.cancelStart();

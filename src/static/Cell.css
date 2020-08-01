@@ -1,18 +1,20 @@
 .cell {
-  margin: 1rem;
+  margin: 10px;
   background-color: white;
   flex-shrink: 1;
   flex-basis: 33%;
   height: 300px;
+  text-align: center;
 }
 
 .cell img {
-  width: 100%;
+  margin-top: 10px;
+  width: 94%;
   height: 50%;
 }
 
 .cell h5 {
   text-align: center;
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
+  margin: 0.6rem;
+  font-size: medium;
 }
