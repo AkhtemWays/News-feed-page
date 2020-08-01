@@ -13,6 +13,7 @@ class PageDisplayer extends Component {
       return;
     }
   }
+
   render() {
     return (
       <div>

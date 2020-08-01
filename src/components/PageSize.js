@@ -3,24 +3,22 @@ import { reduxForm, Field, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 import { getFormValues } from "redux-form";
 
-class PageSize extends Component {
-  render() {
-    return (
-      <Field component="select" name="pageSize">
-        {this.props.pageAmtOptions.map((val) =>
-          val === this.props.pageSize ? (
-            <option name={`pagesize${val}`} value={val} selected>
-              {val}
-            </option>
-          ) : (
-            <option name={`pagesize${val}`} value={val}>
-              {val}
-            </option>
-          )
-        )}
-      </Field>
-    );
-  }
+function PageSize(props) {
+  return (
+    <Field component="select" name="pageSize">
+      {props.pageAmtOptions.map((val) =>
+        val === props.pageSize ? (
+          <option name={`pagesize${val}`} value={val} selected>
+            {val}
+          </option>
+        ) : (
+          <option name={`pagesize${val}`} value={val}>
+            {val}
+          </option>
+        )
+      )}
+    </Field>
+  );
 }
 const ReduxFormComponent = reduxForm({
   form: "pageSize",
