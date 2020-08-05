@@ -1,18 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import { reduxForm, Field, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
-import { getFormValues } from "redux-form";
+import "../static/selectElements.css";
 
 function PageSize(props) {
   return (
-    <Field component="select" name="pageSize">
+    <Field
+      component="select"
+      name="pageSize"
+      className="custom-select ml-1"
+      style={{ width: "100px" }}
+    >
       {props.pageAmtOptions.map((val) =>
         val === props.pageSize ? (
-          <option name={`pagesize${val}`} value={val} selected>
+          <option
+            name={`pagesize${val}`}
+            value={val}
+            defaultValue={val}
+            key={val}
+          >
             {val}
           </option>
         ) : (
-          <option name={`pagesize${val}`} value={val}>
+          <option name={`pagesize${val}`} value={val} key={val}>
             {val}
           </option>
         )
@@ -33,8 +43,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const component = connect(mapStateToProps, null)(ReduxFormComponent);
-
-export default connect((state) => ({
-  values: getFormValues("pageSize")(state),
-}))(component);
+export default connect(mapStateToProps, null)(ReduxFormComponent);
