@@ -41,11 +41,13 @@ export default function (state = initialData, action) {
       const dataAfterPageChanging = PaginateAndNormalizeData(
         state,
         state.pageSize,
-        curPage
+        curPage,
+        state.fetchedData,
+        state.sortedByDateFetchedData
       );
       return {
         ...state,
-        currentPage: action.payload,
+        currentPage: dataAfterPageChanging.currentPage,
         paginatedData: dataAfterPageChanging.paginatedData,
         normalizedData: dataAfterPageChanging.normalizedData,
         availablePages: dataAfterPageChanging.availablePages,
@@ -53,6 +55,7 @@ export default function (state = initialData, action) {
           dataAfterPageChanging.sortedByDatePaginatedData,
         sortedByDateNormalizedData:
           dataAfterPageChanging.sortedByDateNormalizedData,
+        amtPages: dataAfterPageChanging.amtPages,
       };
     case FETCH_POSTS:
       const payload = action.payload;
@@ -93,6 +96,8 @@ export default function (state = initialData, action) {
         availablePages: initialData.availablePages,
         sortedByDatePaginatedData: initialData.sortedByDatePaginatedData,
         sortedByDateNormalizedData: initialData.sortedByDateNormalizedData,
+        pageSize: initialData.pageSize,
+        currentPage: initialData.currentPage,
       };
 
     case SHOW_GRID:
@@ -108,10 +113,10 @@ export default function (state = initialData, action) {
     case "@@redux-form/CHANGE":
       if (action.meta.field === "pageSize") {
         const pageSize = action.payload;
-        const data = PaginateAndNormalizeData(state, pageSize);
+        const data = PaginateAndNormalizeData(state, pageSize, 1);
         return {
           ...state,
-          pageSize: pageSize,
+          pageSize: data.pageSize,
           availablePages: data.availablePages,
           currentPage: 1,
           amtPages: data.amtPages,

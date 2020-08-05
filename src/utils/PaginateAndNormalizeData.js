@@ -1,5 +1,12 @@
-export default (state, pageSize, curPage, fetchedData, sortedFetchedData) => {
+export default (
+  state,
+  pageSizeComing,
+  curPage,
+  fetchedData,
+  sortedFetchedData
+) => {
   const currentPage = curPage ? curPage : state.currentPage;
+  const pageSize = pageSizeComing ? pageSizeComing : state.pageSize;
   const indexOfLastItem = currentPage * pageSize; // settings for pagination
   const indexOfFirstItem = indexOfLastItem - pageSize;
   const fetchData = fetchedData ? fetchedData : state.fetchedData;
@@ -10,18 +17,23 @@ export default (state, pageSize, curPage, fetchedData, sortedFetchedData) => {
   for (let i = 1; i <= amtPages; i++) {
     availablePages.push(i);
   }
-  const sortedByDateFetchedData = state.sortedByDateFetchedData
-    ? state.sortedByDateFetchedData
-    : sortedFetchedData;
+  const sortedByDateFetchedData = sortedFetchedData
+    ? sortedFetchedData
+    : state.sortedByDateFetchedData;
   const sortedByDatePaginatedData = sortedByDateFetchedData[indexOfLastItem]
     ? sortedByDateFetchedData.slice(indexOfFirstItem, indexOfLastItem)
     : sortedByDateFetchedData.slice(
         indexOfFirstItem,
         sortedByDateFetchedData.length
       );
+
   const paginatedData = fetchData[indexOfLastItem]
     ? fetchData.slice(indexOfFirstItem, indexOfLastItem)
     : fetchData.slice(indexOfFirstItem, fetchData.length);
+  if (paginatedData.length === 0) {
+    console.log(indexOfFirstItem);
+    console.log(indexOfLastItem);
+  }
   // data normalization for pagination
   let splitter = 0; // needs for splitting specially for grid structure
   let toInsertPaginatedDefault = []; // needs to insert by batch
@@ -69,5 +81,6 @@ export default (state, pageSize, curPage, fetchedData, sortedFetchedData) => {
     sortedByDateNormalizedData: normDataByDate,
     sortedByDateFetchedData: sortedByDateFetchedData,
     fetchedData: fetchData,
+    currentPage: currentPage,
   };
 };
