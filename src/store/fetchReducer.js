@@ -57,10 +57,17 @@ export default function (state = initialData, action) {
     case FETCH_POSTS:
       const payload = action.payload;
       const cleanFetchedData = [];
+      const shortness = 200;
       for (let [index, item] of payload.entries()) {
+        const copy = (" " + item["Description"]).slice(1);
+
+        const shortenedDescription = copy.slice(0, shortness);
         cleanFetchedData.push({
           title: item.Title,
-          body: item["Description"],
+          body:
+            index !== 10
+              ? shortenedDescription
+              : cleanFetchedData[cleanFetchedData.length - 4].body,
           date: new Date(item.date),
           imgUrl: state.images[index],
         });

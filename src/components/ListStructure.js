@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../static/ListStructure.css";
 import { connect } from "react-redux";
 
@@ -11,7 +11,7 @@ function ListStructure(props) {
           </div>
           <div className="text-field">
             <div className="link-field">
-              <a href="#">
+              <a href="https://www.google.com/">
                 <h5>{post.title}</h5>
               </a>
             </div>
@@ -28,7 +28,7 @@ function ListStructure(props) {
           </div>
           <div className="text-field">
             <div className="link-field">
-              <a href="#">
+              <a href="https://www.google.com/">
                 <h5>{post.title}</h5>
               </a>
             </div>

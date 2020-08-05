@@ -6,6 +6,7 @@
   margin-top: 2em;
   margin-bottom: 2em;
   align-items: flex-start;
+  position: relative;
 }
 
 img {
@@ -15,6 +16,12 @@ img {
 
 .img-field {
   flex: 1;
+  width: 200px;
+  height: 220px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0;
 }
 
 .text-field {
@@ -24,4 +31,15 @@ img {
 
 .plain-field {
   margin-top: 2rem;
+}
+
+.img-field img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  max-height: max-content;
+  transform: translate(-50%, -50%);
 }

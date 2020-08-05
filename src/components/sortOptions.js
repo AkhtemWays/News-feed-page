@@ -1,18 +1,29 @@
 import React from "react";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
+import "../static/selectElements.css";
 
 function SortOptions(props) {
   return (
     <>
-      <Field component="select" name="sortOption">
-        {props.sortOptions.map((option) =>
+      <Field
+        component="select"
+        name="sortOption"
+        className="custom-select ml-1"
+        style={{ width: "100px" }}
+      >
+        {props.sortOptions.map((option, index) =>
           option === props.sortOption ? (
-            <option name={option} value={option} selected>
+            <option
+              name={option}
+              value={option}
+              defaultValue={option}
+              key={index}
+            >
               {option}
             </option>
           ) : (
-            <option name={option} value={option}>
+            <option name={option} value={option} key={index}>
               {option}
             </option>
           )

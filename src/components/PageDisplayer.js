@@ -3,22 +3,12 @@ import { connect } from "react-redux";
 import { setPage } from "../store/actions";
 
 class PageDisplayer extends Component {
-  componentWillUpdate(nextProps, nextState) {
-    if (
-      nextProps.currentPage === this.props.currentPage &&
-      this.props.amtPages === nextProps.amtPages &&
-      this.props.availablePages === nextProps.availablePages
-    ) {
-      console.log("update prevented");
-      return;
-    }
-  }
-
   render() {
     return (
       <div>
-        {this.props.availablePages.map((page) => (
+        {this.props.availablePages.map((page, index) => (
           <button
+            key={index}
             onClick={() => this.props.setPage(page)}
             value={page}
             className={`btn btn-${
