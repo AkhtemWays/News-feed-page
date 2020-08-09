@@ -4,7 +4,7 @@ This project news data from API and displays it with custom manual pagination co
 
 ## Demo
 
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/58889535/89110256-98d8b580-d451-11ea-988c-393ed360e286.gif)
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/58889535/89740747-39ebef80-da94-11ea-9dba-a40f3111be89.gif)
 
 ## Contact me
 
